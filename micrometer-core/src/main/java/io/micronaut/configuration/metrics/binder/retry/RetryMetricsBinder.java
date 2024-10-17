@@ -29,6 +29,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static io.micronaut.configuration.metrics.micrometer.MeterRegistryFactory.MICRONAUT_METRICS_BINDERS;
 
@@ -46,7 +48,7 @@ public class RetryMetricsBinder implements RetryEventListener {
     public static final String RETRY_METRICS_ENABLED = MICRONAUT_METRICS_BINDERS + ".retry.enabled";
     private static final Logger LOGGER = LoggerFactory.getLogger(RetryMetricsBinder.class);
     private final BeanProvider<MeterRegistry> meterRegistryProvider;
-    private final HashMap<ExecutableMethod<?, ?>, Counter> attemptCounters = new HashMap<>();
+    private final Map<ExecutableMethod<?, ?>, Counter> attemptCounters = new HashMap<>();
 
     /**
      * @param meterRegistryProvider The meter registry provider
